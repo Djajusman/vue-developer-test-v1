@@ -12,7 +12,7 @@
     </div>
     <ol>
       <li v-for="(comment, index) in comments" :key="comment.id">
-        {{ comment }}
+        {{ comment.name }} {{ comment.body }}
         <button @click="editComment(index, comment)">Edit</button>
         <button @click="removeComment(index)">Delete</button>
       </li>
