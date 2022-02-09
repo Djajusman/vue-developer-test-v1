@@ -29,21 +29,51 @@ export default {
         comments: [],
         selectedComment: null
       },
-
+      mounted: {
+        listComment() {
+          fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+            .then((response) => response.json())
+            .then((json) => console.log(json))
+        }
+      },
       methods: {
         storeComment() {
-          this.comments.push(this.comment)
-          this.comment = ''
+          fetch('https://jsonplaceholder.typicode.com/posts/1/comments', {
+            method: 'POST',
+            body: JSON.stringify({
+              title: 'foo',
+              body: 'bar',
+              userId: 1
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8'
+            }
+          })
+            .then((response) => response.json())
+            .then((json) => console.log(json))
         },
 
-        removeComment(index) {
-          this.comments.splice(index, 1)
+        removeComment() {
+          fetch('https://jsonplaceholder.typicode.com/posts/1/comments', {
+            method: 'DELETE'
+          })
         },
 
         updateComment() {
-          this.comments.splice(this.selectedIndex, 1, this.comment)
-          this.comment = ''
-          this.isEditing = false
+          fetch('https://jsonplaceholder.typicode.com/posts/1/comments', {
+            method: 'PUT',
+            body: JSON.stringify({
+              id: 1,
+              title: 'foo',
+              body: 'bar',
+              userId: 1
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8'
+            }
+          })
+            .then((response) => response.json())
+            .then((json) => console.log(json))
         },
 
         editComment(index, comment) {
