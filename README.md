@@ -1,4 +1,4 @@
-# vue3-sidebar
+# vue-developer-test
 
 ## Project setup
 ```
